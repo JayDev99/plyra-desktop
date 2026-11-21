@@ -5,7 +5,8 @@
   "scripts": {
     "prepare-web": "node scripts/prepare-web.mjs",
     "dev": "npm run prepare-web && tauri dev",
-    "build": "npm run prepare-web && tauri build"
+    "build": "npm run prepare-web && tauri build",
+    "tauri": "tauri"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.1.0"

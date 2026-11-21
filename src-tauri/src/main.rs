@@ -6,6 +6,8 @@
 // into it (a few seconds). Nothing to download or click by hand.
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+mod full;
+
 use tauri_plugin_updater::UpdaterExt;
 
 async fn update(app: tauri::AppHandle) -> tauri_plugin_updater::Result<()> {
@@ -19,6 +21,7 @@ async fn update(app: tauri::AppHandle) -> tauri_plugin_updater::Result<()> {
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_updater::Builder::new().build())
+        .invoke_handler(tauri::generate_handler![full::open_full])
         .setup(|app| {
             let handle = app.handle().clone();
             tauri::async_runtime::spawn(async move {

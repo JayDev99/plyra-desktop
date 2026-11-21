@@ -12,27 +12,55 @@ nav button[aria-current=true]{background:#24301f;color:var(--ink)}
 nav button:hover{color:var(--ink)}
 main{position:relative}
 iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
-iframe[hidden]{display:none}
+iframe[hidden],.msg[hidden]{display:none}
+.hint{margin:auto 8px 0;color:#6f7785;font-size:12px;line-height:1.5}
+.msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--soft);text-align:center;padding:24px}
+.msg b{color:var(--ink);font-size:18px}
+.msg a{color:#8fbf6a}
 </style></head>
 <body><div class="shell">
 <nav aria-label="Plyra">
 <div class="brand">Plyra Chess</div>
 <button data-view="app" aria-current="true">Train</button>
 <button data-view="school">School</button>
+<button data-view="full">Review &amp; analysis</button>
+<p class="hint">Train: puzzles, Woodpecker, drills, phone-style reviews.<br>Review &amp; analysis: AI game review, investigations, progress, plan.</p>
 </nav>
 <main>
 <iframe id="v-app" src="app/index.html" title="Train"></iframe>
 <iframe id="v-school" data-src="school/index.html" title="School" hidden></iframe>
+<iframe id="v-full" title="Review and analysis" hidden></iframe>
+<div id="full-msg" class="msg" hidden></div>
 </main></div>
 <script>
 // Each section is loaded once and kept alive, so switching is instant and keeps your place.
+const msg = document.getElementById("full-msg");
+let fullStarted = false, fullLoaded = false;
+async function openFull() {
+  const f = document.getElementById("v-full");
+  if (fullStarted) return;
+  fullStarted = true;
+  msg.hidden = false;
+  msg.innerHTML = "<b>Starting review &amp; analysis…</b><span>A few seconds the first time.</span>";
+  try {
+    const url = await window.__TAURI__.core.invoke("open_full");
+    f.src = url;
+    f.addEventListener("load", () => { fullLoaded = true; msg.hidden = true; }, { once: true });
+  } catch (e) {
+    fullStarted = false;
+    msg.innerHTML = String(e).includes("not-installed")
+      ? '<b>Review &amp; analysis uses the full Plyra Chess on this computer.</b><span>Install it from <a href="https://plyrachess.murrtech.pro" target="_blank">plyrachess.murrtech.pro</a>, then open this section again.</span>'
+      : "<b>Couldn't start review &amp; analysis.</b><span>" + String(e) + "</span>";
+  }
+}
 document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-current", x === b));
   document.querySelectorAll("main iframe").forEach(f => {
     const on = f.id === "v-" + b.dataset.view;
-    if (on && !f.src && f.dataset.src) f.src = f.dataset.src;
+    if (on && !f.getAttribute("src") && f.dataset.src) f.src = f.dataset.src;
     f.hidden = !on;
   });
+  if (b.dataset.view === "full") { msg.hidden = fullLoaded; openFull(); } else msg.hidden = true;
 }));
 </script>
 </body></html>
