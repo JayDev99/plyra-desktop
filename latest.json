@@ -1,0 +1,15 @@
+{
+ "version": "0.1.2",
+ "notes": "Improvements and fixes.",
+ "pub_date": "2026-11-21T04:48:19Z",
+ "platforms": {
+  "windows-x86_64": {
+   "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRa1BZdW9UbHdMblZLYXpXODBqOHM4Vy9saFVHQUMzMGsxK0Z5dElPcDN4UStQVGFDak04aVVqWUtIaG95MnI1T21vN0ZjOGQ3RlNOSG40MjV5Zk9hdk54Q3BQYW5RVkFZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MjM2NDk4CWZpbGU6UGx5cmEuQ2hlc3NfMC4xLjJfeDY0LXNldHVwLmV4ZQovcUtFenJjY3ZyNjN4QkJpZ1BWTTFWays1UCtocDJWaUZLVGFhbkFqS2dNazYxOEhFUStjTnkxUlViVXZQOE1KZlZqUWdwNzh3aWdQTktGMytFL2VBdz09Cg==",
+   "url": "https://github.com/JayDev99/plyra-desktop/releases/download/v0.1.2/Plyra.Chess_0.1.2_x64-setup.exe"
+  },
+  "windows-x86_64-nsis": {
+   "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRa1BZdW9UbHdMblZLYXpXODBqOHM4Vy9saFVHQUMzMGsxK0Z5dElPcDN4UStQVGFDak04aVVqWUtIaG95MnI1T21vN0ZjOGQ3RlNOSG40MjV5Zk9hdk54Q3BQYW5RVkFZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MjM2NDk4CWZpbGU6UGx5cmEuQ2hlc3NfMC4xLjJfeDY0LXNldHVwLmV4ZQovcUtFenJjY3ZyNjN4QkJpZ1BWTTFWays1UCtocDJWaUZLVGFhbkFqS2dNazYxOEhFUStjTnkxUlViVXZQOE1KZlZqUWdwNzh3aWdQTktGMytFL2VBdz09Cg==",
+   "url": "https://github.com/JayDev99/plyra-desktop/releases/download/v0.1.2/Plyra.Chess_0.1.2_x64-setup.exe"
+  }
+ }
+}
