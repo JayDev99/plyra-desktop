@@ -1,6 +1,7 @@
-# Builds the Windows installer whenever the version in src-tauri/tauri.conf.json changes, and attaches it to a
-# draft release. The installer is then signed with the update key (kept off GitHub), latest.json is added, and
-# the release is published: installed copies update themselves from it at their next start.
+# Builds the Windows installer whenever the version in src-tauri/tauri.conf.json changes and attaches it to a
+# draft release. Then the installer is signed with the update key (kept off GitHub), latest.json (with the
+# signature) is committed to main, and the release is published. Installed copies read latest.json from main
+# at every start and update themselves.
 name: release
 on:
   workflow_dispatch: {}

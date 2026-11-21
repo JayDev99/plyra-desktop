@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Plyra Chess",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "identifier": "pro.murrtech.plyrachess",
   "build": {
     "frontendDist": "../dist"
@@ -46,7 +46,7 @@
     "updater": {
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDlEMEI1QzRFQTg4QjNEMjQKUldRa1BZdW9UbHdMbllicDIyV2NMZmdVWjVzRlpUY0IvZlc2dXNHZEdiM0l5L0tCNlp4SGVOQk4K",
       "endpoints": [
-        "https://github.com/JayDev99/plyra-desktop/releases/latest/download/latest.json"
+        "https://raw.githubusercontent.com/JayDev99/plyra-desktop/main/latest.json"
       ],
       "windows": {
         "installMode": "passive"
