@@ -30,6 +30,6 @@ jobs:
           tagName: v__VERSION__
           releaseName: Plyra Chess __VERSION__
           releaseBody: Improvements and fixes.
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
           includeUpdaterJson: false
