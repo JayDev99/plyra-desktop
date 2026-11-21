@@ -1,7 +1,7 @@
 {
   "name": "plyra-desktop",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "prepare-web": "node scripts/prepare-web.mjs",
     "dev": "npm run prepare-web && tauri dev",
