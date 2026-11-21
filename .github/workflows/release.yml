@@ -1,0 +1,33 @@
+# Builds the Windows installer on GitHub and publishes it as a release with latest.json, which the installed
+# app reads to update itself. Run it from the Actions tab (Run workflow) after raising the version in
+# src-tauri/tauri.conf.json. Secrets: TAURI_SIGNING_PRIVATE_KEY (the updater key; never committed).
+name: release
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: swatinem/rust-cache@v2
+        with: { workspaces: "src-tauri -> target" }
+      - run: npm install
+      - run: npm run prepare-web
+        env: { PLYRA_WEBSITE: website }
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ""
+        with:
+          tagName: v__VERSION__
+          releaseName: Plyra Chess __VERSION__
+          releaseBody: Improvements and fixes.
+          releaseDraft: false
+          prerelease: false
+          includeUpdaterJson: true

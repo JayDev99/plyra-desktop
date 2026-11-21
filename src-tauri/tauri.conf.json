@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Plyra Chess",
+  "version": "0.1.0",
+  "identifier": "pro.murrtech.plyrachess",
+  "build": {
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Plyra Chess",
+        "width": 1440,
+        "height": 920,
+        "minWidth": 980,
+        "minHeight": 640,
+        "center": true,
+        "backgroundColor": "#12161c"
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/icon.ico",
+      "icons/icon.png"
+    ],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    },
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDlEMEI1QzRFQTg4QjNEMjQKUldRa1BZdW9UbHdMbllicDIyV2NMZmdVWjVzRlpUY0IvZlc2dXNHZEdiM0l5L0tCNlp4SGVOQk4K",
+      "endpoints": [
+        "https://github.com/JayDev99/plyra-desktop/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  }
+}

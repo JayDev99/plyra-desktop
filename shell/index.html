@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plyra Chess</title>
+<style>
+:root{--bg:#12161c;--side:#1a1f27;--ink:#e8eae4;--soft:#a4abb8;--felt:#769656}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.4 "Segoe UI",system-ui,sans-serif}
+.shell{display:grid;grid-template-columns:220px 1fr;height:100%}
+nav{background:var(--side);padding:22px 14px;display:flex;flex-direction:column;gap:4px}
+nav .brand{font-weight:700;font-size:17px;margin:0 8px 18px}
+nav button{all:unset;cursor:pointer;padding:10px 12px;border-radius:8px;color:var(--soft)}
+nav button[aria-current=true]{background:#24301f;color:var(--ink)}
+nav button:hover{color:var(--ink)}
+main{position:relative}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
+iframe[hidden]{display:none}
+</style></head>
+<body><div class="shell">
+<nav aria-label="Plyra">
+<div class="brand">Plyra Chess</div>
+<button data-view="app" aria-current="true">Train</button>
+<button data-view="school">School</button>
+</nav>
+<main>
+<iframe id="v-app" src="app/index.html" title="Train"></iframe>
+<iframe id="v-school" data-src="school/index.html" title="School" hidden></iframe>
+</main></div>
+<script>
+// Each section is loaded once and kept alive, so switching is instant and keeps your place.
+document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-current", x === b));
+  document.querySelectorAll("main iframe").forEach(f => {
+    const on = f.id === "v-" + b.dataset.view;
+    if (on && !f.src && f.dataset.src) f.src = f.dataset.src;
+    f.hidden = !on;
+  });
+}));
+</script>
+</body></html>

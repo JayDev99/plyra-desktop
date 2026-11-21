@@ -1,0 +1,2 @@
+Puzzles: a selection from the Lichess puzzle database (https://database.lichess.org/#puzzles), released under CC0.
+Each puzzle can be seen on Lichess at https://lichess.org/training/<id>.
