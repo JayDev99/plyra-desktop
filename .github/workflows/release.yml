@@ -1,9 +1,12 @@
-# Builds the Windows installer on GitHub and publishes it as a release with latest.json, which the installed
-# app reads to update itself. Run it from the Actions tab (Run workflow) after raising the version in
-# src-tauri/tauri.conf.json. Secrets: TAURI_SIGNING_PRIVATE_KEY (the updater key; never committed).
+# Builds the Windows installer whenever the version in src-tauri/tauri.conf.json changes, and attaches it to a
+# draft release. The installer is then signed with the update key (kept off GitHub), latest.json is added, and
+# the release is published: installed copies update themselves from it at their next start.
 name: release
 on:
   workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ["src-tauri/tauri.conf.json"]
 permissions:
   contents: write
 jobs:
@@ -22,12 +25,10 @@ jobs:
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
-          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ""
         with:
           tagName: v__VERSION__
           releaseName: Plyra Chess __VERSION__
           releaseBody: Improvements and fixes.
-          releaseDraft: false
+          releaseDraft: true
           prerelease: false
-          includeUpdaterJson: true
+          includeUpdaterJson: false
